@@ -43,6 +43,16 @@ public class Membre implements Serializable {
        inverseJoinColumns=@JoinColumn(name="associations_id")
    )    
      private Set<Association> associations;
+      @Column(name="membres_ville")
+      private String ville;
+      @Column(name="membres_adresse")
+      private String adresse;
+      @Column(name="membres_code_postal")
+      private String code_postal;
+      @Column(name="membres_email")
+      private String email;
+      @Column(name="membres_password")
+      private String password;
 
     public Membre() {
     }
@@ -85,6 +95,47 @@ public class Membre implements Serializable {
     public void setAssociations(Set<Association> associations) {
         this.associations = associations;
     }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getCode_postal() {
+        return code_postal;
+    }
+
+    public void setCode_postal(String code_postal) {
+        this.code_postal = code_postal;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     
     
 

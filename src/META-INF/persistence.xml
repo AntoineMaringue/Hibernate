@@ -4,11 +4,9 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>fr.sciencesu.sns.hibernate.jpa.Fournisseur</class>
     <class>fr.sciencesu.sns.hibernate.jpa.Membre</class>
-    <class>fr.sciencesu.sns.hibernate.jpa.Beneficiare</class>
     <class>fr.sciencesu.sns.hibernate.jpa.Association</class>
     <class>fr.sciencesu.sns.hibernate.jpa.Produit</class>
     <class>fr.sciencesu.sns.hibernate.jpa.Stock</class>
-    <class>fr.sciencesu.sns.hibernate.jpa.TypeAssociation</class>
     <class>fr.sciencesu.sns.hibernate.jpa.TypeProduit</class>
     <properties>
       <property name="hibernate.connection.username" value="root"/>

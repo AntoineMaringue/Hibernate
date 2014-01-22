@@ -7,14 +7,10 @@ package fr.sciencesu.sns.hibernate.test;
 import fr.sciencesu.sns.hibernate.jpa.Association;
 import fr.sciencesu.sns.hibernate.jpa.Produit;
 import fr.sciencesu.sns.hibernate.jpa.Stock;
-import fr.sciencesu.sns.hibernate.jpa.TypeAssociation;
-import static fr.sciencesu.sns.hibernate.test.BDD.print;
 import fr.sciencesu.sns.hibernate.utils.HibernateUtil;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -32,11 +28,13 @@ public class Main
     {
         connection();
         
+        //Création d'un produit
         CreateProduit("name", 12.0, null);
         
+        //Création d'une association avec un stock
         testCreateAssociation();
         
-        
+        //Mise en place du produit dans le stock adéquate
         UpdateProduit("produits" ,"name" ,"produits_stock_stocks_id", ReadAssociationWithStock("associations", "Raison sociale"));
         deconnection();
     }
@@ -97,23 +95,13 @@ public class Main
     {
          //Création des objets à rendre persistants
       Association a = new Association("Raison sociale", "adresse", "71160", "Digoin", "00 00 00 00 00", "");
-      TypeAssociation ta = new TypeAssociation("Type association");
-        Stock s = new Stock("stock association 1", new Long(2000));
-        
-      
-      Set<TypeAssociation> sta = new HashSet<>();
-      
-      sta.add(ta);
-      
-        // Association entre Event et Address
-      a.setTypes(sta);
+      Stock s = new Stock("stock association 1", new Long(2000));
  
       a.setStock(s);
       // Enregistrements
       Transaction tx = session.beginTransaction();
       
       session.save(s);
-      session.save(ta);
       session.save(a);
       
       session.flush();
@@ -122,7 +110,6 @@ public class Main
       
       //Affichage de la table
       printAssociation();
-      printTypeAssociation();
     }
     
     /**
@@ -172,21 +159,6 @@ public class Main
         for (Association assoc : dataTable) 
         {
             System.out.println(assoc.toString());
-        }
-    }
-    
-    public static void printTypeAssociation()
-    {
-        System.out.println("[Type Association]");
-        
-        String hql = "from TypeAssociation";
-        Query q = session.createQuery(hql);
-        
-        ArrayList<TypeAssociation> dataTable = (ArrayList) q.list();
-        
-        for (TypeAssociation tassoc : dataTable) 
-        {
-            System.out.println(tassoc.toString());
         }
     }
 

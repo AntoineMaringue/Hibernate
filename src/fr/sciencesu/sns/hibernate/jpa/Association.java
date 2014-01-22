@@ -53,19 +53,7 @@ public class Association implements Serializable
     @OneToOne
     private Stock stock;
     
-    
-    @ManyToMany(
-             cascade={CascadeType.PERSIST, CascadeType.MERGE}
-   )
-   @JoinTable(
-       name="Type_Assoc",
-       joinColumns=@JoinColumn(name="associations_id"),
-       inverseJoinColumns=@JoinColumn(name="types_association_id")
-   )
-    private Set<TypeAssociation> types;
-    
     public Association() {
-        types = new HashSet<>();
     }
 
     public Association(String raisonSociale, String adresse, String codePostal, String ville, String telephone, String email) {
@@ -75,7 +63,6 @@ public class Association implements Serializable
         this.ville = ville;
         this.telephone = telephone;
         this.email = email;
-        types = new HashSet<>();
     }
         
     //Getter / Setter
@@ -133,14 +120,6 @@ public class Association implements Serializable
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Set<TypeAssociation> getTypes() {
-        return types;
-    }
-
-    public void setTypes(Set<TypeAssociation> types) {
-        this.types = types;
     }
 
     public Stock getStock() {

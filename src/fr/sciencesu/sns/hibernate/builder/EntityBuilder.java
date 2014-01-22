@@ -7,7 +7,6 @@ package fr.sciencesu.sns.hibernate.builder;
 import fr.sciencesu.sns.hibernate.jpa.Association;
 import fr.sciencesu.sns.hibernate.jpa.Produit;
 import fr.sciencesu.sns.hibernate.jpa.Stock;
-import fr.sciencesu.sns.hibernate.jpa.TypeAssociation;
 import fr.sciencesu.sns.hibernate.jpa.TypeProduit;
 import java.util.Calendar;
 
@@ -30,10 +29,6 @@ public class EntityBuilder
     public Produit CreateProduit(String nom, Double prix, Calendar ddp)
     {
         return new Produit(nom, prix, ddp);
-    }
-
-    public TypeAssociation CreateTypeAssociation() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public TypeProduit CreateTypeProduit() {

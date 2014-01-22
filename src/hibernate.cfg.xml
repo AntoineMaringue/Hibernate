@@ -13,8 +13,7 @@
     <property name="hibernate.use_sql_comments">true</property>
     <property name="hibernate.format_sql">true</property>
     
-    <mapping class="fr.sciencesu.sns.hibernate.jpa.Beneficiare"/>
-    <mapping class="fr.sciencesu.sns.hibernate.jpa.TypeAssociation"/>
+    <mapping class="fr.sciencesu.sns.hibernate.jpa.Qrcode"/>
     <mapping class="fr.sciencesu.sns.hibernate.jpa.Association"/>
     <mapping class="fr.sciencesu.sns.hibernate.jpa.TypeProduit"/>
     <mapping class="fr.sciencesu.sns.hibernate.jpa.Produit"/>

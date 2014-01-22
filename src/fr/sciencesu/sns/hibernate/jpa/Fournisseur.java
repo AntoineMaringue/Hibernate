@@ -33,6 +33,14 @@ public class Fournisseur implements Serializable {
     private String adresse;
     @Column(name="fournisseurs_raison_sociale")
     private String raisonSocial;
+    @Column(name="fournisseurs_ville")
+      private String ville;
+      @Column(name="fournisseurs_tel")
+      private String tel;
+      @Column(name="fournisseurs_code_postal")
+      private String code_postal;
+      @Column(name="fournisseurs_email")
+      private String email;
     
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(
@@ -91,6 +99,39 @@ public class Fournisseur implements Serializable {
     public void setAssociations(Set<Association> associations) {
         this.associations = associations;
     }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getCode_postal() {
+        return code_postal;
+    }
+
+    public void setCode_postal(String code_postal) {
+        this.code_postal = code_postal;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     
     
     

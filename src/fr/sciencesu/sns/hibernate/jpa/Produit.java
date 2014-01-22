@@ -56,6 +56,14 @@ public class Produit implements Serializable {
     @OneToOne
     private Stock produits_stock;
     
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+       name="Qrcodes",
+       joinColumns=@JoinColumn(name="produit_id"),
+       inverseJoinColumns=@JoinColumn(name="qrcode_id")
+   )    
+    private Set<Qrcode> qrcodes;
+    
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
        name="Type_Produit",
@@ -190,6 +198,16 @@ public class Produit implements Serializable {
     public void setImg(String img) {
         this.img = img;
     }
+
+    public Set<Qrcode> getQrcodes() {
+        return qrcodes;
+    }
+
+    public void setQrcodes(Set<Qrcode> qrcodes) {
+        this.qrcodes = qrcodes;
+    }
+    
+    
 
     @Override
     public String toString() {
