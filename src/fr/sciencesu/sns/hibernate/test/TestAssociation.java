@@ -10,11 +10,8 @@ import static fr.sciencesu.sns.hibernate.test.Main.connection;
 import static fr.sciencesu.sns.hibernate.test.Main.deconnection;
 import static fr.sciencesu.sns.hibernate.test.Main.printAssociation;
 import static fr.sciencesu.sns.hibernate.test.Main.testCreateAssociation;
-import static fr.sciencesu.sns.hibernate.test.Main.testReadAssociation;
 import fr.sciencesu.sns.hibernate.utils.HibernateUtil;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -42,7 +39,12 @@ public class TestAssociation
     public static void testCreateAssociation()
     {
          //Création des objets à rendre persistants
-      Association a = new Association("Raison sociale", "adresse", "71160", "Digoin", "00 00 00 00 00", "");
+      Association a = new Association("Raison sociale", 
+              "adresse", 
+              "71160", 
+              "Digoin", 
+              "00 00 00 00 00", 
+              "");
  
       // Enregistrements
       Transaction tx = session.beginTransaction();

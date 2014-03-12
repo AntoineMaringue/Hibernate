@@ -4,13 +4,17 @@
  */
 package fr.sciencesu.sns.hibernate.test;
 
+import fr.sciencesu.sns.hibernate.builder.AbstractBDD;
 import fr.sciencesu.sns.hibernate.jpa.Association;
 import fr.sciencesu.sns.hibernate.jpa.Produit;
 import fr.sciencesu.sns.hibernate.jpa.Stock;
 import fr.sciencesu.sns.hibernate.utils.HibernateUtil;
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -26,17 +30,22 @@ public class Main
     
     public static void main(String[] args)
     {
-        connection();
-        
-        //Création d'un produit
-        CreateProduit("name", 12.0, null);
-        
-        //Création d'une association avec un stock
-        testCreateAssociation();
-        
-        //Mise en place du produit dans le stock adéquate
-        UpdateProduit("produits" ,"name" ,"produits_stock_stocks_id", ReadAssociationWithStock("associations", "Raison sociale"));
-        deconnection();
+        try {
+            create(2);
+            /*connection();
+            
+            //Création d'un produit
+            CreateProduit("name", 12.0, null);
+            
+            //Création d'une association avec un stock
+            testCreateAssociation();
+            
+            //Mise en place du produit dans le stock adéquate
+            UpdateProduit("produits" ,"name" ,"produits_stock_stocks_id", ReadAssociationWithStock("associations", "Raison sociale"));
+            deconnection();*/
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
     }
     
     public static String ReadAssociationWithStock(String table, String nameAssociation) {
@@ -95,7 +104,7 @@ public class Main
     {
          //Création des objets à rendre persistants
       Association a = new Association("Raison sociale", "adresse", "71160", "Digoin", "00 00 00 00 00", "");
-      Stock s = new Stock("stock association 1", new Long(2000));
+      Stock s = new Stock("stock association 1");
  
       a.setStock(s);
       // Enregistrements
@@ -167,6 +176,24 @@ public class Main
         Query q = session.createQuery("FROM Stock WHERE id = '"+value+"'");
         Stock e = (Stock) q.uniqueResult();
         return e;
+    }
+
+    private static void create(int qte) throws Exception {
+        if(qte > 0)
+        {
+            for (int i = 0; i < qte; i++) {
+                create();
+            }
+        }
+        else
+        {
+            throw new Exception("La quantité doit être positive ! ");
+        }
+    }
+
+    private static void create() {    
+        InitDB database = new InitDB();
+        database.Create(new Produit("TEST", 12.50, AbstractBDD.toCalendar(12, 12, 2012)));
     }
     
 }

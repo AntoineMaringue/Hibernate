@@ -24,30 +24,30 @@ import javax.persistence.Table;
  * @author antoi_000
  */
 @javax.persistence.Entity
-@Table(name = "associations")
+@Table(name = "association")
 public class Association implements Serializable 
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "associations_id")
-    private Integer id;
+    @Column(name = "id_assoc")
+    private Integer id_assoc;
     
-    @Column(name = "associations_rs")
-    private String raisonSociale;
+    @Column(name = "raison_sociale_assoc")
+    private String raison_sociale_assoc;
     
-    @Column(name = "associations_adresse")
-    private String adresse;
+    @Column(name = "adresse_assoc")
+    private String adresse_assoc;
     
-    @Column(name = "associations_cp")
+    @Column(name = "cp_assoc")
     private String codePostal;
     
-    @Column(name = "associations_ville")
+    @Column(name = "ville_assoc")
     private String ville;
     
-    @Column(name = "associations_tel")
+    @Column(name = "tel_assoc")
     private String telephone;
     
-    @Column(name = "associations_mail")
+    @Column(name = "email_assoc")
     private String email;
     
     @OneToOne
@@ -57,8 +57,8 @@ public class Association implements Serializable
     }
 
     public Association(String raisonSociale, String adresse, String codePostal, String ville, String telephone, String email) {
-        this.raisonSociale = raisonSociale;
-        this.adresse = adresse;
+        this.raison_sociale_assoc = raisonSociale;
+        this.adresse_assoc = adresse;
         this.codePostal = codePostal;
         this.ville = ville;
         this.telephone = telephone;
@@ -67,27 +67,27 @@ public class Association implements Serializable
         
     //Getter / Setter
     public Integer getId() {
-        return id;
+        return id_assoc;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.id_assoc = id;
     }
 
     public String getRaisonSociale() {
-        return raisonSociale;
+        return raison_sociale_assoc;
     }
 
     public void setRaisonSociale(String raisonSociale) {
-        this.raisonSociale = raisonSociale;
+        this.raison_sociale_assoc = raisonSociale;
     }
 
     public String getAdresse() {
-        return adresse;
+        return adresse_assoc;
     }
 
     public void setAdresse(String adresse) {
-        this.adresse = adresse;
+        this.adresse_assoc = adresse;
     }
 
     public String getCodePostal() {

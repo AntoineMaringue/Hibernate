@@ -19,19 +19,16 @@ import javax.persistence.Table;
  * @author antoi_000
  */
 @javax.persistence.Entity
-@Table(name="stocks")
+@Table(name="stock")
 public class Stock implements Serializable 
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "stocks_id")
+    @Column(name = "id_stock")
     private Integer id;
     
-    @Column(name = "stocks_nom")
+    @Column(name = "nom_stock")
     private String nom;
-    
-    @Column(name = "stocks_superficie")
-    private Long superficie;
     
     @OneToMany(mappedBy="produits_stock")
     Set<Produit> produits;
@@ -42,14 +39,13 @@ public class Stock implements Serializable
     public Stock() {
     }
 
-    public Stock(String nom, Long superficie) {
+    public Stock(String nom) {
         this.nom = nom;
-        this.superficie = superficie;
     }
 
     @Override
     public String toString() {
-        return "Stock{" + "id=" + id + ", nom=" + nom + ", superficie=" + superficie + ", produits=" + produits  + '}';
+        return "Stock{" + "id=" + id + ", nom=" + nom +  ", produits=" + produits  + '}';
     }
 
     public String getNom() {
@@ -58,14 +54,6 @@ public class Stock implements Serializable
 
     public void setNom(String nom) {
         this.nom = nom;
-    }
-
-    public Long getSuperficie() {
-        return superficie;
-    }
-
-    public void setSuperficie(Long superficie) {
-        this.superficie = superficie;
     }
 
     public Set<Produit> getProduits() {

@@ -26,30 +26,30 @@ import javax.persistence.Temporal;
  */
 
 @javax.persistence.Entity
-@Table(name="produits")
+@Table(name="produit")
 public class Produit implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "produits_id",nullable = false)
+    @Column(name = "id_pdt",nullable = false)
     private Integer id;
     
-    @Column(name = "produits_nom")
+    @Column(name = "nom_pdt")
     private String nom;
     
-    @Column(name = "produits_prix")
+    @Column(name = "prix_pdt")
     private Double prix;
     
-    @Column(name = "produits_unite")
+    @Column(name = "unite_contenance_pdt")
     private String unite;
     
-    @Column(name = "produits_contenance")
+    @Column(name = "contenance_pdt")
     private Double contenance;
     
-    @Column(name = "produits_provenance")
+    @Column(name = "provenance_pdt")
     private String provenance;
     
-    @Column(name = "produits_decription")
+    @Column(name = "decription_pdt")
     private String description;
     
     
@@ -58,34 +58,34 @@ public class Produit implements Serializable {
     
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
-       name="Qrcodes",
-       joinColumns=@JoinColumn(name="produit_id"),
-       inverseJoinColumns=@JoinColumn(name="qrcode_id")
+       name="rassembler",
+       joinColumns=@JoinColumn(name="id_pdt"),
+       inverseJoinColumns=@JoinColumn(name="id_panier")
    )    
-    private Set<Qrcode> qrcodes;
+    private Set<Panier> paniers;
     
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-       name="Type_Produit",
-       joinColumns=@JoinColumn(name="produits_id"),
-       inverseJoinColumns=@JoinColumn(name="types_produit_id")
+       name="appartenir",
+       joinColumns=@JoinColumn(name="id_pdt"),
+       inverseJoinColumns=@JoinColumn(name="id_cat")
    )    
-    private Set<TypeProduit> typesProduits;
+    private Set<CategorieProduit> categoriesProduits;
     
     @Temporal(javax.persistence.TemporalType.DATE)
-    @Column(name = "produits_date_lim")
+    @Column(name = "date_lim_pdt")
     private Calendar dluo;
     
     @Temporal(javax.persistence.TemporalType.DATE)
-    @Column(name = "produits_date_perem")
+    @Column(name = "date_perem_pdt")
     private Calendar ddp;
     
-    @Column(name = "produits_img")
+    @Column(name = "img_pdt")
     private String img;
 
     public Produit() 
     {
-        typesProduits = new HashSet<>();
+        categoriesProduits = new HashSet<>();
     }
 
     public Produit(String nom, Double prix, String unite, Double contenance, String provenance) {
@@ -151,12 +151,12 @@ public class Produit implements Serializable {
         this.provenance = provenance;
     }
 
-    public Set<TypeProduit> getTypesProduits() {
-        return typesProduits;
+    public Set<CategorieProduit> getTypesProduits() {
+        return categoriesProduits;
     }
 
-    public void setTypesProduits(Set<TypeProduit> typesProduits) {
-        this.typesProduits = typesProduits;
+    public void setTypesProduits(Set<CategorieProduit> typesProduits) {
+        this.categoriesProduits = typesProduits;
     }
 
     public Calendar getDluo() {
@@ -199,12 +199,12 @@ public class Produit implements Serializable {
         this.img = img;
     }
 
-    public Set<Qrcode> getQrcodes() {
-        return qrcodes;
+    public Set<Panier> getQrcodes() {
+        return paniers;
     }
 
-    public void setQrcodes(Set<Qrcode> qrcodes) {
-        this.qrcodes = qrcodes;
+    public void setQrcodes(Set<Panier> qrcodes) {
+        this.paniers = qrcodes;
     }
     
     

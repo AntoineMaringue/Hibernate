@@ -27,65 +27,65 @@ public class Membre implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="membres_id")
-    private Integer id;
+    @Column(name="id_membre")
+    private Integer id_membre;
     
-    @Column(name="membres_nom")
-    private String nom;
+    @Column(name="nom_membre")
+    private String nom_membre;
     
-    @Column(name="membres_prenom")
-    private String prenom;
+    @Column(name="prenom_membre")
+    private String prenom_membre;
     
       @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(
-       name="Association",
-       joinColumns=@JoinColumn(name="membres_id"),
-       inverseJoinColumns=@JoinColumn(name="associations_id")
+       name="adhérer",
+       joinColumns=@JoinColumn(name="id_membre"),
+       inverseJoinColumns=@JoinColumn(name="id_assoc")
    )    
      private Set<Association> associations;
-      @Column(name="membres_ville")
-      private String ville;
-      @Column(name="membres_adresse")
-      private String adresse;
-      @Column(name="membres_code_postal")
-      private String code_postal;
-      @Column(name="membres_email")
-      private String email;
-      @Column(name="membres_password")
-      private String password;
+      @Column(name="ville_membre")
+      private String ville_membre;
+      @Column(name="adresse_membre")
+      private String adresse_membre;
+      @Column(name="cp_membre")
+      private String cp_membre;
+      @Column(name="email_membre")
+      private String email_membre;
+      @Column(name="mdp_membre")
+      private String mdp_membre;
 
     public Membre() {
     }
 
     public Membre(String nom, String prenom) {
-        this.nom = nom;
-        this.prenom = prenom;
+        this.nom_membre = nom;
+        this.prenom_membre = prenom;
     }
       
     
 
     public Integer getId() {
-        return id;
+        return id_membre;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.id_membre = id;
     }
 
     public String getNom() {
-        return nom;
+        return nom_membre;
     }
 
     public void setNom(String nom) {
-        this.nom = nom;
+        this.nom_membre = nom;
     }
 
     public String getPrenom() {
-        return prenom;
+        return prenom_membre;
     }
 
     public void setPrenom(String prenom) {
-        this.prenom = prenom;
+        this.prenom_membre = prenom;
     }
 
     public Set<Association> getAssociations() {
@@ -97,43 +97,43 @@ public class Membre implements Serializable {
     }
 
     public String getVille() {
-        return ville;
+        return ville_membre;
     }
 
     public void setVille(String ville) {
-        this.ville = ville;
+        this.ville_membre = ville;
     }
 
     public String getAdresse() {
-        return adresse;
+        return adresse_membre;
     }
 
     public void setAdresse(String adresse) {
-        this.adresse = adresse;
+        this.adresse_membre = adresse;
     }
 
     public String getCode_postal() {
-        return code_postal;
+        return cp_membre;
     }
 
     public void setCode_postal(String code_postal) {
-        this.code_postal = code_postal;
+        this.cp_membre = code_postal;
     }
 
     public String getEmail() {
-        return email;
+        return email_membre;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email_membre = email;
     }
 
     public String getPassword() {
-        return password;
+        return mdp_membre;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.mdp_membre = password;
     }
     
     
@@ -142,7 +142,7 @@ public class Membre implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (id_membre != null ? id_membre.hashCode() : 0);
         return hash;
     }
 
@@ -153,7 +153,7 @@ public class Membre implements Serializable {
             return false;
         }
         Membre other = (Membre) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.id_membre == null && other.id_membre != null) || (this.id_membre != null && !this.id_membre.equals(other.id_membre))) {
             return false;
         }
         return true;
@@ -161,7 +161,7 @@ public class Membre implements Serializable {
 
     @Override
     public String toString() {
-        return "fr.sciencesu.sns.hibernate.jpa.Membre[ id=" + id + " ]";
+        return "fr.sciencesu.sns.hibernate.jpa.Membre[ id=" + id_membre + " ]";
     }
     
 }

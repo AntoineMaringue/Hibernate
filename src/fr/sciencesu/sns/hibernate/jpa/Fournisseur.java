@@ -22,44 +22,34 @@ import javax.persistence.Table;
  * @author antoi_000
  */
 @Entity
-@Table(name = "fournisseurs")
+@Table(name = "fournisseur")
 public class Fournisseur implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="fournisseurs_id")
+    @Column(name="id_frs")
     private Integer id;
-    @Column(name="fournisseurs_adresse")
+    @Column(name="adresse_frs")
     private String adresse;
-    @Column(name="fournisseurs_raison_sociale")
+    @Column(name="raison_sociale_frs")
     private String raisonSocial;
-    @Column(name="fournisseurs_ville")
+    @Column(name="ville_frs")
       private String ville;
-      @Column(name="fournisseurs_tel")
+      @Column(name="tel_frs")
       private String tel;
-      @Column(name="fournisseurs_code_postal")
+      @Column(name="cp_frs")
       private String code_postal;
-      @Column(name="fournisseurs_email")
+      @Column(name="email_frs")
       private String email;
     
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(
-       name="Produit",
-       joinColumns=@JoinColumn(name="fournisseurs_id"),
-       inverseJoinColumns=@JoinColumn(name="produits_id")
+       name="fournir",
+       joinColumns=@JoinColumn(name="id_frs"),
+       inverseJoinColumns=@JoinColumn(name="id_pdt")
    )
     private Set<Produit> produits;
-
-     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(
-       name="Association",
-       joinColumns=@JoinColumn(name="fournisseurs_id"),
-       inverseJoinColumns=@JoinColumn(name="associations_id")
-   )    
-     private Set<Association> associations;
-     
-     
-     
+    
     public Integer getId() {
         return id;
     }
@@ -90,14 +80,6 @@ public class Fournisseur implements Serializable {
 
     public void setProduits(Set<Produit> produits) {
         this.produits = produits;
-    }
-
-    public Set<Association> getAssociations() {
-        return associations;
-    }
-
-    public void setAssociations(Set<Association> associations) {
-        this.associations = associations;
     }
 
     public String getVille() {

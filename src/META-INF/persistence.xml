@@ -7,7 +7,8 @@
     <class>fr.sciencesu.sns.hibernate.jpa.Association</class>
     <class>fr.sciencesu.sns.hibernate.jpa.Produit</class>
     <class>fr.sciencesu.sns.hibernate.jpa.Stock</class>
-    <class>fr.sciencesu.sns.hibernate.jpa.TypeProduit</class>
+    <class>fr.sciencesu.sns.hibernate.jpa.CategorieProduit</class>
+    <class>fr.sciencesu.sns.hibernate.jpa.Panier</class>
     <properties>
       <property name="hibernate.connection.username" value="root"/>
       <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>

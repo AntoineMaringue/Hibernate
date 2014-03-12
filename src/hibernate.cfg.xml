@@ -13,9 +13,9 @@
     <property name="hibernate.use_sql_comments">true</property>
     <property name="hibernate.format_sql">true</property>
     
-    <mapping class="fr.sciencesu.sns.hibernate.jpa.Qrcode"/>
+    <mapping class="fr.sciencesu.sns.hibernate.jpa.Panier"/>
     <mapping class="fr.sciencesu.sns.hibernate.jpa.Association"/>
-    <mapping class="fr.sciencesu.sns.hibernate.jpa.TypeProduit"/>
+    <mapping class="fr.sciencesu.sns.hibernate.jpa.CategorieProduit"/>
     <mapping class="fr.sciencesu.sns.hibernate.jpa.Produit"/>
     <mapping class="fr.sciencesu.sns.hibernate.jpa.Stock"/>
     <mapping class="fr.sciencesu.sns.hibernate.jpa.Fournisseur"/>

@@ -97,7 +97,8 @@ public class BDD {
    
     public static void ReadProduit(String table, String field, String value) {
         // Récupération de l'Event d'après son titre
-        Query q = session.createQuery("from " + table + " where " + field + "= :myTitle");
+        Query q = session.createQuery("from " + table + " where " 
+                + field + "= :myTitle");
         q.setString("myTitle", value);
         Produit e = (Produit) q.uniqueResult();
 
@@ -137,7 +138,7 @@ public class BDD {
     }*/
     public static void UpdateProduit(String table, String nameProduct , String field, String value) {
         // Récupération de l'Event d'après son titre
-       
+      
        String query = "FROM Produit WHERE nom = '" + nameProduct +"'" ;
         Query q = session.createQuery(query);//"FROM " + table + " WHERE " + field + " = " + value + " AND " + "produits_nom = "+"'"+nameProduct+"'"
         Produit e = null;
@@ -157,7 +158,13 @@ public class BDD {
         tx.commit();
     }
 
-   
+   /**
+    * Méthode de supression de produit
+    * 
+    * @param table : nom de la table du MCD
+    * @param field : nom du champ dans la table
+    * @param value : nouvelle valeur
+    */
     public static void DeleteProduit(String table, String field, String value) {
         // Récupération de l'Event d'après son titre
         Query q = session.createQuery("from " + table + " where " + field + "= :myTitle");
@@ -279,6 +286,7 @@ public class BDD {
         // Enregistrements
         Transaction tx = session.beginTransaction();
 
+        
         session.save(e);
         //s.save(a);
         tx.commit();
@@ -349,8 +357,8 @@ public class BDD {
         print(table);
     }
     
-    public static void CreateStock(String nom,Long superficie) {
-        Stock e = new Stock(nom,superficie);
+    public static void CreateStock(String nom) {
+        Stock e = new Stock(nom);
 
         // Enregistrements
         Transaction tx = session.beginTransaction();

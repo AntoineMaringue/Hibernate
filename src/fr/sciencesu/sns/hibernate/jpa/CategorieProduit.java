@@ -18,22 +18,22 @@ import javax.persistence.Table;
  * @author antoi_000
  */
 @javax.persistence.Entity
-@Table(name = "types_produit")
-public class TypeProduit implements Serializable 
+@Table(name = "categorie_produit")
+public class CategorieProduit implements Serializable 
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "types_produit_id")
+    @Column(name = "id_cat")
     private Integer id;
     
-    @Column(name = "types_produit_nom")
+    @Column(name = "nom_cat")
     private String nom;
     
 
-    public TypeProduit() {
+    public CategorieProduit() {
     }
 
-    public TypeProduit(String nom) {
+    public CategorieProduit(String nom) {
         this.nom = nom;
     }
 
