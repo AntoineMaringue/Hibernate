@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hibernate.Query;
@@ -32,14 +33,24 @@ public class Main
     public static void main(String[] args)
     {
         try {
-            create(2);
+            
+            connection();
+            //testCreateAssociation();
+            
+            UpdateProduit("TEST" ,
+                    "TEST" ,
+                    "produits_stock_id_stock", 
+                    ReadAssociationWithStock("association", "Raison sociale"));
+            deconnection();
+            //create(2);
+            
             /*connection();
             
             //Création d'un produit
             CreateProduit("name", 12.0, null);
             
             //Création d'une association avec un stock
-            testCreateAssociation();
+            
             
             //Mise en place du produit dans le stock adéquate
             UpdateProduit("produits" ,"name" ,"produits_stock_stocks_id", ReadAssociationWithStock("associations", "Raison sociale"));
@@ -51,7 +62,7 @@ public class Main
     
     public static String ReadAssociationWithStock(String table, String nameAssociation) {
         // Récupération de l'Event d'après son titre
-        Query q = session.createSQLQuery("SELECT stock_stocks_id FROM " + table + " WHERE associations_rs = '"+nameAssociation +"'" );
+        Query q = session.createSQLQuery("SELECT stock_id_stock FROM " + table + " WHERE raison_sociale_assoc = '"+nameAssociation +"'" );
         String s = "";
         for (Iterator it = q.list().iterator(); it.hasNext();) {
             s += it.next() + "\n";
@@ -72,21 +83,34 @@ public class Main
 
     }
    
-   public static void UpdateProduit(String table, String nameProduct , String field, String value) {
+   public static void UpdateProduit(String table, 
+           String nameProduct , 
+           String field, 
+           String value) {
         // Récupération de l'Event d'après son titre
        
-       String query = "FROM Produit WHERE nom = '" + nameProduct +"'" ;
+       String query = "FROM Produit WHERE nom_pdt = '" + nameProduct +"'" ;
         Query q = session.createQuery(query);//"FROM " + table + " WHERE " + field + " = " + value + " AND " + "produits_nom = "+"'"+nameProduct+"'"
-        Produit e = (Produit) q.uniqueResult();
-        Stock s = getStock("nom",value);
-        e.setProduits_stock(s);
+        Stack<Produit> produits = new Stack<>();
+         for (Iterator it = q.list().iterator(); it.hasNext();) {
+            Object p = it.next();
+             produits.add((Produit)p);
+             System.out.println(p.toString());
+         }
+        //Produit e = (Produit) q.uniqueResult();
         
-        Transaction tx = session.beginTransaction();
+        for (Produit produit : produits) {
+            Transaction tx = session.beginTransaction();
+            Stock s = getStock("nom",value);
+            produit.setProduits_stock(s);
+             session.saveOrUpdate(s);
+            session.saveOrUpdate(produit);
+            //s.save(a);
+            tx.commit();
+       }
+        
 
-        session.saveOrUpdate(s);
-        session.saveOrUpdate(e);
-        //s.save(a);
-        tx.commit();
+       
 
         // Modifications des attributs de l'objet
         // e.setDescription("Description modifiée");
@@ -161,7 +185,7 @@ public class Main
     {
         System.out.println("[Association]");
         
-        String hql = "from Association";
+        String hql = "from association";
         Query q = session.createQuery(hql);
         
         ArrayList<Association> dataTable = (ArrayList) q.list();

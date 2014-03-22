@@ -28,7 +28,7 @@ public class TestAssociation
     public static void main(String[] args)
     {
         connection();
-        testCreateAssociation();
+        //testCreateAssociation();
         //testReadAssociation("1");
         deconnection();
     }
