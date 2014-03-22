@@ -31,7 +31,7 @@ public class BDD {
 
     public static void connection() {
         //Ouverture d'une session
-        session = HibernateUtil.getSession();
+        session = HibernateUtil.getSessionFactory().openSession();
 
     }
 

@@ -7,13 +7,14 @@ package fr.sciencesu.sns.hibernate.builder;
 
 import fr.sciencesu.sns.hibernate.utils.HibernateUtil;
 import java.net.ConnectException;
+import java.sql.Date;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Set;
 import org.hibernate.Query;
-import org.hibernate.classic.Session;
+import org.hibernate.Session;
 
 
 
@@ -32,7 +33,7 @@ public class AbstractBDD {
 
     public void connection() throws ConnectException{
         if (session == null) {           
-            session = HibernateUtil.getSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             debug(LOG + " Connexion OK ");
         }
     }
@@ -55,19 +56,6 @@ public class AbstractBDD {
 
         for (Object object : dataTable) {
             System.out.println(object.toString());
-        }
-    }
-
-    public static Calendar toCalendar(String dateString) {
-        try {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd");
-            Date date = format.parse(dateString);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            return calendar;
-        } catch (ParseException e) {
-            System.err.println(e.getMessage());
-            throw new IllegalArgumentException(e);
         }
     }
 
@@ -96,16 +84,18 @@ public class AbstractBDD {
 
     public static Calendar toCalendar(int day, int month, int year) {
         Calendar c = Calendar.getInstance();
+        month -=1%12;//Corection des dates
         c.set(Calendar.DATE, day);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.YEAR, year);
  
         Date date = new Date(c.getTimeInMillis());
 
-        SimpleDateFormat simpleDateformatter = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat simpleDateformatter = new SimpleDateFormat("yyyy-MM-dd");
         simpleDateformatter.format(date);
 
-        c.setTime(date);
+        c.setTime(new Date(date.getTime()));
+  
         return c;
     }
 

@@ -6,16 +6,10 @@ package fr.sciencesu.sns.hibernate.test;
 
 import fr.sciencesu.sns.hibernate.builder.AbstractBDD;
 import fr.sciencesu.sns.hibernate.builder.IProduit;
-import fr.sciencesu.sns.hibernate.jpa.Association;
 import fr.sciencesu.sns.hibernate.jpa.Produit;
 import fr.sciencesu.sns.hibernate.jpa.Stock;
-import static fr.sciencesu.sns.hibernate.test.BDD.getStock;
-import static fr.sciencesu.sns.hibernate.test.BDD.print;
 import java.net.ConnectException;
-import java.util.Calendar;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
@@ -26,6 +20,10 @@ import org.hibernate.Transaction;
  */
 public class InitDB extends AbstractBDD implements IProduit<Produit> {
 
+    public InitDB() {
+    }
+
+    
     @Override
     public void Create(Produit element) {
         try {

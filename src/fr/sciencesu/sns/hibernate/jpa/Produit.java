@@ -5,6 +5,7 @@
 package fr.sciencesu.sns.hibernate.jpa;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -74,11 +75,11 @@ public class Produit implements Serializable {
     
     @Temporal(javax.persistence.TemporalType.DATE)
     @Column(name = "date_lim_pdt")
-    private Calendar dluo;
+    private Calendar  dluo;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     @Column(name = "date_perem_pdt")
-    private Calendar ddp;
+    private Calendar  ddp;
     
     @Column(name = "img_pdt")
     private String img;
@@ -159,19 +160,19 @@ public class Produit implements Serializable {
         this.categoriesProduits = typesProduits;
     }
 
-    public Calendar getDluo() {
+    public Calendar  getDluo() {
         return dluo;
     }
 
-    public void setDluo(Calendar dluo) {
+    public void setDluo(Calendar  dluo) {
         this.dluo = dluo;
     }
 
-    public Calendar getDdp() {
+    public Calendar  getDdp() {
         return ddp;
     }
 
-    public void setDdp(Calendar ddp) {
+    public void setDdp(Calendar  ddp) {
         this.ddp = ddp;
     }
 
@@ -211,7 +212,19 @@ public class Produit implements Serializable {
 
     @Override
     public String toString() {
-        return id + "," + nom + "," + prix + "," + unite + "," + contenance + "," + provenance + "," + description + "," + produits_stock +  "," + img;//"," + dluo!=null?dluo.toString():"" + "," + ddp!=null?ddp.toString():"" +
+        return id!=null?id + "," :""+
+                nom!=null?nom + "," :""
+                + prix!=null?prix + ",":"" 
+                + unite!=null?unite + "," :""
+                + contenance!=null?contenance + "," :""
+                + provenance!=null?provenance + "," :""
+                + description!=null?description + "," :""
+                + produits_stock!=null?produits_stock +  ",":""
+                + img!=null?img + ",":"" 
+                + dluo!=null?dluo.toString()+"," :""+
+                ddp!=null?ddp.toString():"" 
+                ;
+                
     }
     
     

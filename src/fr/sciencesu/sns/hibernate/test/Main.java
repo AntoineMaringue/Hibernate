@@ -12,6 +12,7 @@ import fr.sciencesu.sns.hibernate.utils.HibernateUtil;
 import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -146,7 +147,7 @@ public class Main
     public static void connection()
     {
         //Ouverture d'une session
-        session = HibernateUtil.getSession();        
+        session = HibernateUtil.getSessionFactory().openSession();        
         
     }
     
@@ -193,7 +194,7 @@ public class Main
 
     private static void create() {    
         InitDB database = new InitDB();
-        database.Create(new Produit("TEST", 12.50, AbstractBDD.toCalendar(12, 12, 2012)));
+        database.Create(new Produit("TEST", 12.50, AbstractBDD.toCalendar(12, 12, 2010)));
     }
     
 }

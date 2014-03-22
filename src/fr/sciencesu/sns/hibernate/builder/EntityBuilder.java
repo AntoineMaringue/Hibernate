@@ -5,10 +5,11 @@
 package fr.sciencesu.sns.hibernate.builder;
 
 import fr.sciencesu.sns.hibernate.jpa.Association;
+import fr.sciencesu.sns.hibernate.jpa.CategorieProduit;
 import fr.sciencesu.sns.hibernate.jpa.Produit;
 import fr.sciencesu.sns.hibernate.jpa.Stock;
-import fr.sciencesu.sns.hibernate.jpa.CategorieProduit;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -28,6 +29,7 @@ public class EntityBuilder
     }
     public Produit CreateProduit(String nom, Double prix, Calendar ddp)
     {
+        
         return new Produit(nom, prix, ddp);
     }
 

@@ -7,7 +7,7 @@ package fr.sciencesu.sns.hibernate.utils;
 import org.hibernate.HibernateException;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
-import org.hibernate.classic.Session;
+import org.hibernate.Session;
 
 /**
  * Hibernate Utility class with a convenient method to get Session Factory
